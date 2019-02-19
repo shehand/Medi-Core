@@ -6,12 +6,10 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var MongoClient = require('mongodb').MongoClient;
 var homeRouter = require('./routes/home');
 
 var app = express();
 
-MongoClient.connect('mongodb://localhost:27017/medicore', { useNewUrlParser: true });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
