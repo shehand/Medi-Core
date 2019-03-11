@@ -1,0 +1,14 @@
+version: 1
+
+update_configs:
+  - package_manager: "javascript"
+    directory: "/routes"
+    update_schedule: "live"
+  
+  - package_manager: "javascript"
+    directory: "/models"
+    update_schedule: "live"
+
+  - package_manager: "html"
+    directory: "/views"
+    update_schedule: "live"
