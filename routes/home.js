@@ -9,18 +9,33 @@ client.connect(err => {
     client.close();
 });
 
-// MongoClient.connect(uri, { useNewUrlParser: true } , function(err, client) {
-//     if (err) throw err;
-//
-//     const db = client.db("contacts");
-//     db.collection('users').find({}).toArray(function(err, result) {
-//         if (err) throw err;
-//         res.render('../user/dashboard', {users: result});
-//     });
-// });
 
 router.get('/dashboard', function (req, res, next) {
     res.render('home/home');
+});
+
+router.post('submit', function (req, res, next) {
+    const name = req.body.problemDescription;
+    var error;
+
+    MongoClient.connect(uri, { useNewUrlParser: true } , function(err, db) {
+        if (err) throw err;
+
+        var dbo = db.db("medicore");
+
+        var myobj = {
+            description: name,
+        };
+
+        dbo.collection("publicposts").insertOne(myobj, function(err, res) {
+            if (err){
+                error = "Ops! Error... Please Try again";
+            }else{
+                error = "Query submitted Successfully";
+                db.close();
+            }
+        });
+    });
 });
 
 module.exports = router;
