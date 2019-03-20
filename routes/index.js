@@ -1,20 +1,20 @@
 var express = require('express');
 var router = express.Router();
 var csrf = require('csurf');
+var csrfProtection = csrf();
 
 var MongoClient = require('mongodb').MongoClient;
-
 const uri = "mongodb+srv://medi-core:ucsc@123@medi-core-t8h1d.mongodb.net/test?retryWrites=true";
-
 const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect(err => {
     client.close();
 });
 
+router.use(csrfProtection);
 
 /* GET home page. */
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Express' });
+  res.render('login', {csrfToken: req.csrfToken()});
 });
 
 router.get('/dashboard', function (req, res, next) {
