@@ -20,22 +20,46 @@ router.get('/login', function(req, res, next) {
 router.get('/dashboard', function (req, res, next) {
     res.render('home');
 });
-router.get('/users/add', function (req, res, next) {
-    const name = "shehan dhaleesha";
-    const password = "11111111";
-    var error;
 
+router.get('/users/add', function (req, res, next) {
+    // const name = "shehan dhaleesha";
+    // const password = "11111111";
+    // var error;
+    //
+    // MongoClient.connect(uri, { useNewUrlParser: true } , function(err, db) {
+    //     if (err) throw err;
+    //
+    //     var dbo = db.db("medicore");
+    //
+    //     var myobj = {
+    //         name: name,
+    //         pass: password
+    //     };
+    //
+    //     dbo.collection("users").insertOne(myobj, function(err, res) {
+    //         if (err){
+    //             error = "Ops! Error... Please Try again";
+    //         }else{
+    //             error = "Query submitted Successfully";
+    //             db.close();
+    //         }
+    //     });
+    // });
+});
+
+router.get('/public_posts/add', function (req, res, next) {
+    const description = req.body.problemDescription;
+    console.log(description);
     MongoClient.connect(uri, { useNewUrlParser: true } , function(err, db) {
         if (err) throw err;
 
         var dbo = db.db("medicore");
 
         var myobj = {
-            name: name,
-            pass: password
+            description: description
         };
 
-        dbo.collection("users").insertOne(myobj, function(err, res) {
+        dbo.collection("publicposts").insertOne(myobj, function(err, res) {
             if (err){
                 error = "Ops! Error... Please Try again";
             }else{
@@ -45,4 +69,5 @@ router.get('/users/add', function (req, res, next) {
         });
     });
 });
+
 module.exports = router;
