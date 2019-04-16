@@ -45,17 +45,25 @@ router.post('/posts/add', function (req, res, next) {
     });
 });
 
+router.post("/register", function (req, res, next) {
+
+});
+
+router.get("/register", function (req, res, next) {
+
+});
+
 function getPublicPosts(callback){
     MongoClient.connect(uri, { useNewUrlParser: true } , function(err, db) {
         if (err) throw err;
 
         var dbo = db.db("medicore");
 
-        dbo.collection("public_posts").find( function(err, objs){
+        dbo.collection("public_posts").find(function(err, objs){
             if(err) cb(err);
 
             if (objs.length != 0) {
-                console.log(objs);
+                console.log(objs.s);
                 return callback(null, objs);
             } else {
                 // Not sure what you want to do if there are no results
