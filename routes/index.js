@@ -13,9 +13,24 @@ router.get('/login', function(req, res, next) {
 });
 
 router.get('/dashboard', function (req, res, next) {
-    getPublicPosts(function(err, name) {
-        res.render('home/home');
+    var resultArray = [];
+
+    MongoClient.connect(uri, { useNewUrlParser: true } , function(err, db) {
+        if (err) throw err;
+
+        var dbo = db.db("medicore");
+        var cursor = dbo.collection("public_posts").find();
+
+        cursor.forEach(function (doc, err) {
+            if (err) throw err;
+            resultArray.push(doc);
+        }, function () {
+            db.close();
+            console.log(resultArray);
+            res.render("home/home");
+        });
     });
+
 });
 
 router.post('/posts/add', function (req, res, next) {
