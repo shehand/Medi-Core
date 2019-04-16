@@ -5,11 +5,6 @@ var csrfProtection = csrf();
 
 var MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://medi-core:ucsc@123@medi-core-t8h1d.mongodb.net/test?retryWrites=true";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-    client.close();
-});
-
 // router.use(csrfProtection);
 
 /* GET home page. */
@@ -18,11 +13,14 @@ router.get('/login', function(req, res, next) {
 });
 
 router.get('/dashboard', function (req, res, next) {
-    res.render('home/home');
+    getPublicPosts(function(err, name) {
+        res.render('home/home');
+    });
 });
 
 router.post('/posts/add', function (req, res, next) {
     const description = req.body.problemDescription;
+    backURL=req.header('Referer') || '/';
 
     var error;
 
@@ -41,33 +39,29 @@ router.post('/posts/add', function (req, res, next) {
             }else{
                 error = "Query submitted Successfully";
                 db.close();
-                res.render("home/home");
+                res.redirect(backURL);
             }
         });
     });
 });
 
-router.get('/public_posts/add', function (req, res, next) {
-    const description = req.body.problemDescription;
-    console.log(description);
+function getPublicPosts(callback){
     MongoClient.connect(uri, { useNewUrlParser: true } , function(err, db) {
         if (err) throw err;
 
         var dbo = db.db("medicore");
 
-        var myobj = {
-            description: description
-        };
+        dbo.collection("public_posts").find( function(err, objs){
+            if(err) cb(err);
 
-        dbo.collection("publicposts").insertOne(myobj, function(err, res) {
-            if (err){
-                error = "Ops! Error... Please Try again";
-            }else{
-                error = "Query submitted Successfully";
-                db.close();
+            if (objs.length != 0) {
+                console.log(objs);
+                return callback(null, objs);
+            } else {
+                // Not sure what you want to do if there are no results
             }
         });
     });
-});
+}
 
 module.exports = router;
