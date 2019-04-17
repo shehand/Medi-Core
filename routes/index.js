@@ -28,8 +28,27 @@ router.get('/dashboard', function (req, res, next) {
             db.close();
             res.render("home/home", {public_posts: resultArray});
         });
+
     });
 
+});
+
+router.post("/comments", function (req, res, next) {
+    const postID = req.body.publicPostIDValue;
+    var commentArray = [];
+
+    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+        var dbo = db.db("medicore");
+
+        var cursor = dbo.collection("post_comments").find({postID: postID});
+        cursor.forEach(function (doc, err) {
+            if (err) throw err;
+            commentArray.push(doc);
+        }, function () {
+            db.close();
+            res.render("user/publicPost", {postID: postID, comments: commentArray});
+        });
+    });
 });
 
 router.post('/posts/add', function (req, res, next) {
@@ -63,7 +82,6 @@ router.post("/placeComment", function (req, res, next) {
     backURL=req.header('Referer') || '/';
     const comment = req.body.placeCommentInputArea;
     const postID = req.body.publicPostIDValue;
-    console.log(postID);
 
     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
         if (err) throw err;
@@ -72,7 +90,7 @@ router.post("/placeComment", function (req, res, next) {
 
         var myobj = {
             comment: comment,
-            postID: postID
+            postID: postID[0]
         };
 
         dbo.collection("post_comments").insertOne(myobj, function (err) {
@@ -80,11 +98,12 @@ router.post("/placeComment", function (req, res, next) {
 
             }else{
                 db.close();
-                res.redirect(backURL);
+                res.redirect("/dashboard");
             }
         });
     });
 });
+
 
 router.post("/register", function (req, res, next) {
 
@@ -93,24 +112,5 @@ router.post("/register", function (req, res, next) {
 router.get("/register", function (req, res, next) {
 
 });
-
-function getPublicPosts(callback){
-    MongoClient.connect(uri, { useNewUrlParser: true } , function(err, db) {
-        if (err) throw err;
-
-        var dbo = db.db("medicore");
-
-        dbo.collection("public_posts").find(function(err, objs){
-            if(err) cb(err);
-
-            if (objs.length != 0) {
-                console.log(objs.s);
-                return callback(null, objs);
-            } else {
-                // Not sure what you want to do if there are no results
-            }
-        });
-    });
-}
 
 module.exports = router;

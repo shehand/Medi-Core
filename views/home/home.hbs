@@ -181,8 +181,11 @@
                     <hr class="w3-clear">
                     <p><b>{{ this.problem_description}}</b></p>
                     <hr>
-                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>Like</button>
-                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="modal" data-target="#myModal" data-id="{{ this._id }}"><i class="fa fa-comment"></i>Comment</button>
+                    <form action="/comments" method="post">
+                        <input type="text" value="{{this._id}}" name="publicPostIDValue">
+                        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>Like</button>
+                        <button type="submit" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-comment"></i>Comments</button>
+                    </form>
                 </div>
             {{/each}}
 
@@ -202,29 +205,6 @@
             <!--<button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>-->
             <!--Comment</button>-->
             <!--</div>-->
-
-            <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Modal Header</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="w3-container" method="post" action="/placeComment">
-                                <input class="w3-input w3-animate-input" type="text" style="width:250px;"placeholder="your comment goes here..."  name="placeCommentInputArea">
-                                <input type="hidden" id="publicPostID" name="publicPostIDValue">
-                                <button class="w3-btn w3-blue-grey" style="float: right; margin-top: 10px">Place</button>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                        </div>
-                    </div>
-
-                </div>
-            </div>
 
             <!-- End Middle Column -->
         </div>
@@ -313,10 +293,6 @@
         }
     }
 
-    $(document).on("click", ".w3-button", function () {
-        var myBookId = $(this).data('id');
-        $(".modal-body #publicPostID").val( myBookId );
-    });
 </script>
 
 </body>
