@@ -13,9 +13,23 @@ router.get('/login', function(req, res, next) {
 });
 
 router.get('/dashboard', function (req, res, next) {
-    getPublicPosts(function(err, name) {
-        res.render('home/home');
+    var resultArray = [];
+
+    MongoClient.connect(uri, { useNewUrlParser: true } , function(err, db) {
+        if (err) throw err;
+
+        var dbo = db.db("medicore");
+        var cursor = dbo.collection("public_posts").find().sort({'_id':-1});
+
+        cursor.forEach(function (doc, err) {
+            if (err) throw err;
+            resultArray.push(doc);
+        }, function () {
+            db.close();
+            res.render("home/home", {public_posts: resultArray});
+        });
     });
+
 });
 
 router.post('/posts/add', function (req, res, next) {
@@ -45,17 +59,52 @@ router.post('/posts/add', function (req, res, next) {
     });
 });
 
+router.post("/placeComment", function (req, res, next) {
+    backURL=req.header('Referer') || '/';
+    const comment = req.body.placeCommentInputArea;
+    const postID = req.body.publicPostIDValue;
+    console.log(postID);
+
+    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+        if (err) throw err;
+
+        var dbo = db.db("medicore");
+
+        var myobj = {
+            comment: comment,
+            postID: postID
+        };
+
+        dbo.collection("post_comments").insertOne(myobj, function (err) {
+            if (err){
+
+            }else{
+                db.close();
+                res.redirect(backURL);
+            }
+        });
+    });
+});
+
+router.post("/register", function (req, res, next) {
+
+});
+
+router.get("/register", function (req, res, next) {
+
+});
+
 function getPublicPosts(callback){
     MongoClient.connect(uri, { useNewUrlParser: true } , function(err, db) {
         if (err) throw err;
 
         var dbo = db.db("medicore");
 
-        dbo.collection("public_posts").find( function(err, objs){
+        dbo.collection("public_posts").find(function(err, objs){
             if(err) cb(err);
 
             if (objs.length != 0) {
-                console.log(objs);
+                console.log(objs.s);
                 return callback(null, objs);
             } else {
                 // Not sure what you want to do if there are no results
