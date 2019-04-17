@@ -182,7 +182,7 @@
                     <p><b>{{ this.problem_description}}</b></p>
                     <hr>
                     <form action="/comments" method="post">
-                        <input type="text" value="{{this._id}}" name="publicPostIDValue">
+                        <input type="hidden" value="{{this._id}}" name="publicPostIDValue">
                         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>Like</button>
                         <button type="submit" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-comment"></i>Comments</button>
                     </form>
