@@ -19,7 +19,7 @@ router.get('/dashboard', function (req, res, next) {
         if (err) throw err;
 
         var dbo = db.db("medicore");
-        var cursor = dbo.collection("public_posts").find();
+        var cursor = dbo.collection("public_posts").find().sort({'_id':-1});
 
         cursor.forEach(function (doc, err) {
             if (err) throw err;
@@ -27,7 +27,7 @@ router.get('/dashboard', function (req, res, next) {
         }, function () {
             db.close();
             console.log(resultArray);
-            res.render("home/home");
+            res.render("home/home", {public_posts: resultArray});
         });
     });
 
