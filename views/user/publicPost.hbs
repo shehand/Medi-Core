@@ -101,18 +101,18 @@
                     <hr class="w3-clear">
                     <p><b>asfsadfdsf</b></p>
                     <hr>
-                    <p><span>wqervwqe rwqer qwer</span></p>
-                    <hr>
-                    <p><span>s dfg gsdf gsdfg d</span></p>
-                    <hr>
-                    <p><span>465 4sdfg564s f45dg</span></p>
-                    <hr>
+                    {{#each comments}}
+                        <p><span>{{this.comment}}</span></p>
+                        <hr>
+                    {{/each}}
                 </div>
 
                 <form class="w3-container" method="post" action="/placeComment">
+                    <input type="hidden" value="{{postID}}" name="publicPostIDValue">
                     <input class="w3-input w3-animate-input" type="text" style="width:250px;"placeholder="your comment goes here..."  name="placeCommentInputArea">
                     <input type="hidden" id="publicPostID" name="publicPostIDValue">
                     <button class="w3-btn w3-blue-grey" style="float: right; margin-top: 10px">Place</button>
+                    <!--<button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="modal" data-target="#myModal" data-id="{{ this._id }}"><i class="fa fa-comment"></i>Comment</button>-->
                 </form>
                 <!--<div class="w3-container w3-card w3-white w3-round w3-margin"><br>-->
                 <!--<img src="/w3images/avatar6.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"-->
