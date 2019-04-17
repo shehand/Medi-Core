@@ -60,6 +60,30 @@ router.post('/posts/add', function (req, res, next) {
     });
 });
 
+router.post("/placeComment", function (req, res, next) {
+    backURL=req.header('Referer') || '/';
+    const comment = req.body.placeCommentInputArea;
+
+    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+        if (err) throw err;
+
+        var dbo = db.db("medicore");
+
+        var myobj = {
+            comment: comment
+        };
+
+        dbo.collection("post_comments").insertOne(myobj, function (err) {
+            if (err){
+
+            }else{
+                db.close();
+                res.redirect(backURL);
+            }
+        });
+    });
+});
+
 router.post("/register", function (req, res, next) {
 
 });
