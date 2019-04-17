@@ -26,7 +26,6 @@ router.get('/dashboard', function (req, res, next) {
             resultArray.push(doc);
         }, function () {
             db.close();
-            console.log(resultArray);
             res.render("home/home", {public_posts: resultArray});
         });
     });
@@ -63,6 +62,8 @@ router.post('/posts/add', function (req, res, next) {
 router.post("/placeComment", function (req, res, next) {
     backURL=req.header('Referer') || '/';
     const comment = req.body.placeCommentInputArea;
+    const postID = req.body.publicPostIDValue;
+    console.log(postID);
 
     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
         if (err) throw err;
@@ -70,7 +71,8 @@ router.post("/placeComment", function (req, res, next) {
         var dbo = db.db("medicore");
 
         var myobj = {
-            comment: comment
+            comment: comment,
+            postID: postID
         };
 
         dbo.collection("post_comments").insertOne(myobj, function (err) {

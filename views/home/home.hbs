@@ -3,10 +3,14 @@
 <title>W3.CSS Template</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <style>
     html,
     body,
@@ -136,8 +140,7 @@
             <!-- Alert Box -->
             <div
                     class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
-                    <span onclick="this.parentElement.style.display='none'"
-                          class="w3-button w3-theme-l3 w3-display-topright">
+                    <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
                         <i class="fa fa-remove"></i>
                     </span>
                 <p><strong>Hey!</strong></p>
@@ -158,12 +161,10 @@
 
                             <form action="/posts/add" method="post">
                                 <div class="row">
-                                    <input type="text" class="w3-border w3-padding"
-                                           placeholder="I am suffring from a ..., What can I do for this?..." name="problemDescription" id="problemDescription">
+                                    <input type="text" class="w3-border w3-padding" placeholder="I am suffring from a ..., What can I do for this?..." name="problemDescription" id="problemDescription">
                                 </div>
                                 <br>
-                                <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>
-                                    Post</button>
+                                <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>Post</button>
                             </form>
 
                             <br>
@@ -174,19 +175,17 @@
 
             {{# each public_posts }}
                 <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                    <img src="/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
-                         style="width:60px">
+                    <img src="/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
                     <span class="w3-right w3-opacity">1 min</span>
                     <h4>John Doe</h4><br>
                     <hr class="w3-clear">
                     <p><b>{{ this.problem_description}}</b></p>
                     <hr>
-                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
-                        Like</button>
-                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-comment"></i>
-                        Comment</button>
+                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>Like</button>
+                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="modal" data-target="#myModal" data-id="{{ this._id }}"><i class="fa fa-comment"></i>Comment</button>
                 </div>
             {{/each}}
+
             <!--<div class="w3-container w3-card w3-white w3-round w3-margin"><br>-->
             <!--<img src="/w3images/avatar6.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"-->
             <!--style="width:60px">-->
@@ -204,21 +203,26 @@
             <!--Comment</button>-->
             <!--</div>-->
 
-            <div id="id01" class="w3-modal">
-                <div class="w3-modal-content w3-animate-top w3-card-4">
-                    <header class="w3-container w3-teal">
-                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                        <h2>Comment</h2>
-                    </header>
-                    <div class="w3-container">
-                        <form class="w3-container" method="post" action="/placeComment">
-                            <input class="w3-input w3-animate-input" type="text" style="width:250px; padding-top: 25px" placeholder="your comment goes here..."  name="placeCommentInputArea">
-                            <button class="w3-btn w3-blue-grey" style="float: right;margin: 10px">Place</button>
-                        </form>
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Modal Header</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="w3-container" method="post" action="/placeComment">
+                                <input class="w3-input w3-animate-input" type="text" style="width:250px;"placeholder="your comment goes here..."  name="placeCommentInputArea">
+                                <input type="hidden" id="publicPostID" name="publicPostIDValue">
+                                <button class="w3-btn w3-blue-grey" style="float: right; margin-top: 10px">Place</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
                     </div>
-                    <footer class="w3-container w3-teal">
-                        <p></p>
-                    </footer>
+
                 </div>
             </div>
 
@@ -308,6 +312,11 @@
             x.className = x.className.replace(" w3-show", "");
         }
     }
+
+    $(document).on("click", ".w3-button", function () {
+        var myBookId = $(this).data('id');
+        $(".modal-body #publicPostID").val( myBookId );
+    });
 </script>
 
 </body>
