@@ -14,20 +14,29 @@ router.get('/login', function(req, res, next) {
 
 router.get('/dashboard', function (req, res, next) {
     var resultArray = [];
+    var commentArray = [];
 
     MongoClient.connect(uri, { useNewUrlParser: true } , function(err, db) {
         if (err) throw err;
 
         var dbo = db.db("medicore");
         var cursor = dbo.collection("public_posts").find().sort({'_id':-1});
+        var comments = dbo.collection("post_comments ").find();
 
-        cursor.forEach(function (doc, err) {
-            if (err) throw err;
-            resultArray.push(doc);
+        comments.forEach(function (doc, err) {
+            if(err) throw err;
+            commentArray.push(doc);
         }, function () {
-            db.close();
-            res.render("home/home", {public_posts: resultArray});
+            cursor.forEach(function (doc, err) {
+                if (err) throw err;
+                resultArray.push(doc);
+            }, function () {
+                db.close();
+                res.render("home/home", {public_posts: resultArray, post_comments:commentArray});
+            });
         });
+
+
     });
 
 });
@@ -93,24 +102,5 @@ router.post("/register", function (req, res, next) {
 router.get("/register", function (req, res, next) {
 
 });
-
-function getPublicPosts(callback){
-    MongoClient.connect(uri, { useNewUrlParser: true } , function(err, db) {
-        if (err) throw err;
-
-        var dbo = db.db("medicore");
-
-        dbo.collection("public_posts").find(function(err, objs){
-            if(err) cb(err);
-
-            if (objs.length != 0) {
-                console.log(objs.s);
-                return callback(null, objs);
-            } else {
-                // Not sure what you want to do if there are no results
-            }
-        });
-    });
-}
 
 module.exports = router;
