@@ -21,21 +21,21 @@ router.get('/dashboard', function (req, res, next) {
 
         var dbo = db.db("medicore");
         var cursor = dbo.collection("public_posts").find().sort({'_id':-1});
-        var comments = dbo.collection("post_comments ").find();
+        var comments = dbo.collection("post_comments").find();
 
         comments.forEach(function (doc, err) {
             if(err) throw err;
             commentArray.push(doc);
-        }, function () {
-            cursor.forEach(function (doc, err) {
-                if (err) throw err;
-                resultArray.push(doc);
-            }, function () {
-                db.close();
-                res.render("home/home", {public_posts: resultArray, post_comments:commentArray});
-            });
         });
 
+        cursor.forEach(function (doc, err) {
+            if (err) throw err;
+            resultArray.push(doc);
+        }, function () {
+            db.close();
+            console.log(commentArray);
+            res.render("home/home", {public_posts: resultArray, post_comments:commentArray});
+        });
 
     });
 
@@ -93,6 +93,10 @@ router.post("/placeComment", function (req, res, next) {
             }
         });
     });
+});
+
+router.get("/comments", function (req, res, next) {
+    res.render("user/publicPost");
 });
 
 router.post("/register", function (req, res, next) {
