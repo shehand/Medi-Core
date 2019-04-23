@@ -109,7 +109,7 @@
 
                 <form class="w3-container" method="post" action="/placeComment">
                     <input type="hidden" value="{{postID}}" name="publicPostIDValue">
-                    <input class="w3-input w3-animate-input" type="text" style="width:250px;"placeholder="your comment goes here..."  name="placeCommentInputArea">
+                    <input class="w3-input" type="text" style="width:250px;"placeholder="your comment goes here..."  name="placeCommentInputArea" id="commentArea">
                     <input type="hidden" id="publicPostID" name="publicPostIDValue">
                     <button class="w3-btn w3-blue-grey" style="float: right; margin-top: 10px">Place</button>
                     <!--<button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="modal" data-target="#myModal" data-id="{{ this._id }}"><i class="fa fa-comment"></i>Comment</button>-->
@@ -215,8 +215,10 @@
 
     $(document).on("click", "li", function () {
         var liValue = $(this).data('value');
-        // $(".modal-body #publicPostID").val( myBookId );
-        console.log(myBookId);
+        var preValue = document.getElementById("commentArea").value;
+        var newValue = preValue + ", "+liValue;
+        $(".w3-col #commentArea").val( newValue );
+        console.log(preValue);
     });
 </script>
 
