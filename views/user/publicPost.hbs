@@ -157,8 +157,16 @@
             <div class="w3-col m2">
 
 
-                <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
-                    <p><i class="fa fa-bug w3-xxlarge"></i></p>
+                <div class="w3-card w3-round w3-white w3-padding-32 w3-left">
+                    <p><i class="w3-xxlarge" style="margin-left: 50px">Labels</i></p>
+                    <ul>
+                        <li data-value="Don't Eat">Don't Eat</li>
+                        <li data-value="Don't have bath">Don't have bath</li>
+                        <li data-value="Better sleep more">Better sleep more</li>
+                        <li data-value="Time is everything">Time is everything</li>
+                        <li data-value="Make sure you get every prescriptions">Make sure you get every prescriptions</li>
+                        <li data-value="Need more attention">Need more attention</li>
+                    </ul>
                 </div>
 
                 <!-- End Right Column -->
@@ -205,9 +213,10 @@
         }
     }
 
-    $(document).on("click", ".w3-button", function () {
-        var myBookId = $(this).data('id');
-        $(".modal-body #publicPostID").val( myBookId );
+    $(document).on("click", "li", function () {
+        var liValue = $(this).data('value');
+        // $(".modal-body #publicPostID").val( myBookId );
+        console.log(myBookId);
     });
 </script>
 
