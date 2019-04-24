@@ -96,4 +96,84 @@ router.post("/placeComment", function (req, res, next) {
     });
 });
 
+router.post("create/group", function (req, res, next) {
+    backURL=req.header('Referer') || '/';
+    const groupName = req.body;
+    const creater = req.body;
+
+    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+       if(err) throw  err;
+
+       var dbo = db.db("medicore");
+
+       var myobj = {
+           name: groupName,
+           creater: creater
+       };
+
+       dbo.collection("groups").insertOne(myobj, function (err) {
+          if(err){
+
+          } else{
+              db.close();
+              res.redirect(backURL);
+          }
+       });
+    });
+});
+
+router.post("add/users", function (req, res, next) {
+    backURL=req.header('Referer') || '/';
+    const userID = req.body;
+    const groupID = req.body;
+
+    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+        if(err) throw  err;
+
+        var dbo = db.db("medicore");
+
+        var myobj = {
+            userID: userID,
+            groupID: groupID
+        };
+
+        dbo.collection("groups_members").insertOne(myobj, function (err) {
+            if(err){
+
+            } else{
+                db.close();
+                res.redirect(backURL);
+            }
+        });
+    });
+});
+
+router.post("create/group_threads", function (req, res, next) {
+    backURL=req.header('Referer') || '/';
+    const creater = req.body;
+    const groupID = req.body;
+
+    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+        if(err) throw  err;
+
+        var dbo = db.db("medicore");
+
+        var myobj = {
+            creater: creater,
+            groupID: groupID
+        };
+
+        dbo.collection("groups_threads").insertOne(myobj, function (err) {
+            if(err){
+
+            } else{
+                db.close();
+                res.redirect(backURL);
+            }
+        });
+    });
+});
+
+
+
 module.exports = router;
