@@ -131,6 +131,12 @@ router.post("/create/group", function (req, res, next) {
     });
 });
 
+// view group
+
+router.get("/viewGroup", function (req, res, next) {
+    res.render("user/registerdUser/myGroups")
+});
+
 // add users to the groups
 
 // router.post("add/users", function (req, res, next) {
