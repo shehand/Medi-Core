@@ -7,6 +7,12 @@ var MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://medi-core:ucsc@123@medi-core-t8h1d.mongodb.net/test?retryWrites=true";
 // router.use(csrfProtection);
 
+
+// landing page
+router.get('/', function(req, res, next) {
+    res.render('index');
+});
+
 /* GET home page. */
 router.get('/login', function(req, res, next) {
   res.render('login', {csrfToken: req.csrfToken()});
