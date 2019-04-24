@@ -96,6 +96,7 @@ router.post("/placeComment", function (req, res, next) {
     });
 });
 
+// create group
 router.post("create/group", function (req, res, next) {
     backURL=req.header('Referer') || '/';
     const groupName = req.body;
@@ -122,6 +123,7 @@ router.post("create/group", function (req, res, next) {
     });
 });
 
+// add users to the groups
 router.post("add/users", function (req, res, next) {
     backURL=req.header('Referer') || '/';
     const userID = req.body;
@@ -148,6 +150,7 @@ router.post("add/users", function (req, res, next) {
     });
 });
 
+// create group threads
 router.post("create/group_threads", function (req, res, next) {
     backURL=req.header('Referer') || '/';
     const creater = req.body;
@@ -174,6 +177,7 @@ router.post("create/group_threads", function (req, res, next) {
     });
 });
 
+// add comments to the group threads
 router.post("add/group_threads_comments", function (req, res, next) {
     backURL=req.header('Referer') || '/';
     const comment = req.body;
