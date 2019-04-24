@@ -6,19 +6,26 @@ const uri = "mongodb+srv://medi-core:ucsc@123@medi-core-t8h1d.mongodb.net/test?r
 
 router.get('/dashboard', function (req, res, next) {
     var resultArray = [];
+    var groupsArray = [];
 
     MongoClient.connect(uri, { useNewUrlParser: true } , function(err, db) {
         if (err) throw err;
 
         var dbo = db.db("medicore");
         var cursor = dbo.collection("registered_posts").find().sort({'_id':-1});
+        var groups = dbo.collection("groups").find();
 
         cursor.forEach(function (doc, err) {
             if (err) throw err;
             resultArray.push(doc);
         }, function () {
-            db.close();
-            res.render("user/registerdUser/dashboard", {public_posts: resultArray});
+            groups.forEach(function (doc, err) {
+                if(err) throw err;
+                groupsArray.push(doc);
+            }, function () {
+                db.close();
+                res.render("user/registerdUser/dashboard", {public_posts: resultArray, groups: groupsArray});
+            });
         });
 
     });
@@ -98,31 +105,31 @@ router.post("/placeComment", function (req, res, next) {
 
 // create group
 
-// router.post("create/group", function (req, res, next) {
-//     backURL=req.header('Referer') || '/';
-//     const groupName = req.body;
-//     const creater = req.body;
-//
-//     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
-//        if(err) throw  err;
-//
-//        var dbo = db.db("medicore");
-//
-//        var myobj = {
-//            name: groupName,
-//            creater: creater
-//        };
-//
-//        dbo.collection("groups").insertOne(myobj, function (err) {
-//           if(err){
-//
-//           } else{
-//               db.close();
-//               res.redirect(backURL);
-//           }
-//        });
-//     });
-// });
+router.post("/create/group", function (req, res, next) {
+    backURL=req.header('Referer') || '/';
+    const groupName = req.body.groupName;
+    const creater = req.body.userID;
+
+    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+       if(err) throw  err;
+
+       var dbo = db.db("medicore");
+
+       var myobj = {
+           name: groupName,
+           creater: creater
+       };
+
+       dbo.collection("groups").insertOne(myobj, function (err) {
+          if(err){
+
+          } else{
+              db.close();
+              res.redirect(backURL);
+          }
+       });
+    });
+});
 
 // add users to the groups
 
