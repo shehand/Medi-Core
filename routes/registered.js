@@ -174,6 +174,32 @@ router.post("create/group_threads", function (req, res, next) {
     });
 });
 
+router.post("add/group_threads_comments", function (req, res, next) {
+    backURL=req.header('Referer') || '/';
+    const comment = req.body;
+    const poster: req.body;
+    const groupID = req.body;
 
+    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+        if(err) throw  err;
+
+        var dbo = db.db("medicore");
+
+        var myobj = {
+            poster: poster,
+            groupID: groupID,
+            comment: comment
+        };
+
+        dbo.collection("groups_thread_comments").insertOne(myobj, function (err) {
+            if(err){
+
+            } else{
+                db.close();
+                res.redirect(backURL);
+            }
+        });
+    });
+});
 
 module.exports = router;
