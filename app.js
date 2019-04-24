@@ -8,6 +8,7 @@ var passport = require('passport');
 var flash = require('connect-flash');
 
 var indexRouter = require('./routes/index');
+var registered = require("./routes/registered");
 
 var app = express();
 
@@ -26,6 +27,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/users', registered);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
