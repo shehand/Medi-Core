@@ -134,7 +134,22 @@ router.post("/create/group", function (req, res, next) {
 // view group
 
 router.get("/viewGroup", function (req, res, next) {
-    res.render("user/registerdUser/myGroups")
+    var threadArray = [];
+
+    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+
+        var dbo = db.db("medicore");
+        const thread =  dbo.collection("groups_threads").find(); // group id or name should be passed to the find method.
+
+        thread.forEach(function (doc, err) {
+            if (err) throw err;
+
+            threadArray.push(doc);
+        }, function () {
+            db.close();
+            res.render("user/registerdUser/myGroups", { threads: threadArray });
+        });
+    });
 });
 
 // add users to the groups
@@ -167,7 +182,7 @@ router.post("/add/users", function (req, res, next) {
 
 // create group threads
 
-router.post("create/group_threads", function (req, res, next) {
+router.post("/create/group_threads", function (req, res, next) {
     backURL=req.header('Referer') || '/';
     const creator = req.body.threadCreator;
     const groupID = req.body.threadGroupID;

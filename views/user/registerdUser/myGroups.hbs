@@ -90,58 +90,70 @@
             </div>
 
             <!-- Middle Column -->
-            <div class="w3-col m7">
+            <div class="w3-col m7" style="padding-left: 10px; padding-right: 10px">
 
+                <div id="accordion">
 
+                    {{#if threads}}
+                        {{#each threads}}
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            {{this.name}}
+                                        </button>
+                                    </h5>
+                                </div>
 
-                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                    <img src="/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-                    <span class="w3-right w3-opacity">1 min</span>
-                    <h4>John Doe</h4><br>
-                    <hr class="w3-clear">
-                    <p><b>asfsadfdsf</b></p>
-                    <hr>
-                </div>
-
-                <form class="w3-container" method="post" action="/placeComment">
-                    <input class="w3-input" type="text" style="width:250px;"placeholder="your comment goes here..."  name="placeCommentInputArea" id="commentArea">
-                    <input type="hidden" id="publicPostID" name="publicPostIDValue">
-                    <button class="w3-btn w3-blue-grey" style="float: right; margin-top: 10px">Place</button>
-                </form>
-                <!--<div class="w3-container w3-card w3-white w3-round w3-margin"><br>-->
-                <!--<img src="/w3images/avatar6.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"-->
-                <!--style="width:60px">-->
-                <!--<span class="w3-right w3-opacity">32 min</span>-->
-                <!--<h4>Angie Jane</h4><br>-->
-                <!--<hr class="w3-clear">-->
-                <!--<p>Have you seen this?</p>-->
-                <!--<img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">-->
-                <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut-->
-                <!--labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco-->
-                <!--laboris nisi ut aliquip ex ea commodo consequat.</p>-->
-                <!--<button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>-->
-                <!--Like</button>-->
-                <!--<button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>-->
-                <!--Comment</button>-->
-                <!--</div>-->
-
-                <div id="myModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Modal Header</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <p>
+                                            {{this.description}}
+                                        </p>
+                                        <hr>
+                                        <form action="" method="post">
+                                            <div class="form-group">
+                                                <label for="userID" class="col-form-label">Comment</label>
+                                                <input type="text" class="form-control" id="userID" name="userID">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Add Comment</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="modal-body">
+                        {{/each}}
+                    {{else}}
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Temp Thread
+                                        </button>
+                                    </h5>
+                                </div>
 
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <p>
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                        </p>
+                                        <hr>
+                                        <form action="" method="post">
+                                            <div class="form-group">
+                                                <label for="userID" class="col-form-label">Comment</label>
+                                                <input type="text" class="form-control" id="userID" name="userID">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Add Comment</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="modal-footer">
-                            </div>
-                        </div>
+                    {{/if}}
 
-                    </div>
                 </div>
 
                 <!-- End Middle Column -->
@@ -206,7 +218,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="post">
+                        <form action="create/group_threads" method="post">
                             <div class="form-group">
                                 <label for="threadName" class="col-form-label">Thread Name :</label>
                                 <input type="text" class="form-control" id="threadName" name="threadName">
@@ -245,7 +257,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="post">
+                        <form action="add/users" method="post">
                             <div class="form-group">
                                 <label for="addUserID" class="col-form-label">User ID :</label>
                                 <input type="text" class="form-control" id="addUserID" name="addUserID">
