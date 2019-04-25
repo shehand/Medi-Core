@@ -167,7 +167,7 @@ router.post("/add/users", function (req, res, next) {
 
 // create group threads
 
-router.post("create/group_threads", function (req, res, next) {
+router.post("/create/group_threads", function (req, res, next) {
     backURL=req.header('Referer') || '/';
     const creator = req.body.threadCreator;
     const groupID = req.body.threadGroupID;
