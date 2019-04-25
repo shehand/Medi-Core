@@ -6,19 +6,26 @@ const uri = "mongodb+srv://medi-core:ucsc@123@medi-core-t8h1d.mongodb.net/test?r
 
 router.get('/dashboard', function (req, res, next) {
     var resultArray = [];
+    var groupsArray = [];
 
     MongoClient.connect(uri, { useNewUrlParser: true } , function(err, db) {
         if (err) throw err;
 
         var dbo = db.db("medicore");
         var cursor = dbo.collection("registered_posts").find().sort({'_id':-1});
+        var groups = dbo.collection("groups").find();
 
         cursor.forEach(function (doc, err) {
             if (err) throw err;
             resultArray.push(doc);
         }, function () {
-            db.close();
-            res.render("home/home", {public_posts: resultArray});
+            groups.forEach(function (doc, err) {
+                if(err) throw err;
+                groupsArray.push(doc);
+            }, function () {
+                db.close();
+                res.render("user/registerdUser/dashboard", {public_posts: resultArray, groups: groupsArray});
+            });
         });
 
     });
@@ -95,5 +102,125 @@ router.post("/placeComment", function (req, res, next) {
         });
     });
 });
+
+// create group
+
+router.post("/create/group", function (req, res, next) {
+    backURL=req.header('Referer') || '/';
+    const groupName = req.body.groupName;
+    const creater = req.body.userID;
+
+    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+       if(err) throw  err;
+
+       var dbo = db.db("medicore");
+
+       var myobj = {
+           name: groupName,
+           creater: creater
+       };
+
+       dbo.collection("groups").insertOne(myobj, function (err) {
+          if(err){
+
+          } else{
+              db.close();
+              res.redirect(backURL);
+          }
+       });
+    });
+});
+
+// view group
+
+router.get("/viewGroup", function (req, res, next) {
+    res.render("user/registerdUser/myGroups")
+});
+
+// add users to the groups
+
+// router.post("add/users", function (req, res, next) {
+//     backURL=req.header('Referer') || '/';
+//     const userID = req.body;
+//     const groupID = req.body;
+//
+//     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+//         if(err) throw  err;
+//
+//         var dbo = db.db("medicore");
+//
+//         var myobj = {
+//             userID: userID,
+//             groupID: groupID
+//         };
+//
+//         dbo.collection("groups_members").insertOne(myobj, function (err) {
+//             if(err){
+//
+//             } else{
+//                 db.close();
+//                 res.redirect(backURL);
+//             }
+//         });
+//     });
+// });
+
+// create group threads
+
+// router.post("create/group_threads", function (req, res, next) {
+//     backURL=req.header('Referer') || '/';
+//     const creater = req.body;
+//     const groupID = req.body;
+//
+//     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+//         if(err) throw  err;
+//
+//         var dbo = db.db("medicore");
+//
+//         var myobj = {
+//             creater: creater,
+//             groupID: groupID
+//         };
+//
+//         dbo.collection("groups_threads").insertOne(myobj, function (err) {
+//             if(err){
+//
+//             } else{
+//                 db.close();
+//                 res.redirect(backURL);
+//             }
+//         });
+//     });
+// });
+
+// add comments to the group threads
+
+// router.post("add/group_threads_comments", function (req, res, next) {
+//     backURL=req.header('Referer') || '/';
+//     const comment = req.body;
+//     const poster: req.body;
+//     const groupID = req.body;
+//
+//     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+//         if(err) throw  err;
+//
+//         var dbo = db.db("medicore");
+//
+//         var myobj = {
+//             poster: poster,
+//             groupID: groupID,
+//             comment: comment
+//         };
+//
+//         dbo.collection("groups_thread_comments").insertOne(myobj, function (err) {
+//             if(err){
+//
+//             } else{
+//                 db.close();
+//                 res.redirect(backURL);
+//             }
+//         });
+//     });
+// });
 
 module.exports = router;
