@@ -139,31 +139,31 @@ router.get("/viewGroup", function (req, res, next) {
 
 // add users to the groups
 
-// router.post("add/users", function (req, res, next) {
-//     backURL=req.header('Referer') || '/';
-//     const userID = req.body;
-//     const groupID = req.body;
-//
-//     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
-//         if(err) throw  err;
-//
-//         var dbo = db.db("medicore");
-//
-//         var myobj = {
-//             userID: userID,
-//             groupID: groupID
-//         };
-//
-//         dbo.collection("groups_members").insertOne(myobj, function (err) {
-//             if(err){
-//
-//             } else{
-//                 db.close();
-//                 res.redirect(backURL);
-//             }
-//         });
-//     });
-// });
+router.post("/add/users", function (req, res, next) {
+    backURL=req.header('Referer') || '/';
+    const userID = req.body.addUserID;
+    const groupID = req.body.addGroupID;
+
+    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+        if(err) throw  err;
+
+        var dbo = db.db("medicore");
+
+        var myobj = {
+            userID: userID,
+            groupID: groupID
+        };
+
+        dbo.collection("groups_members").insertOne(myobj, function (err) {
+            if(err){
+
+            } else{
+                db.close();
+                res.redirect(backURL);
+            }
+        });
+    });
+});
 
 // create group threads
 
