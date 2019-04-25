@@ -139,59 +139,63 @@ router.get("/viewGroup", function (req, res, next) {
 
 // add users to the groups
 
-// router.post("add/users", function (req, res, next) {
-//     backURL=req.header('Referer') || '/';
-//     const userID = req.body;
-//     const groupID = req.body;
-//
-//     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
-//         if(err) throw  err;
-//
-//         var dbo = db.db("medicore");
-//
-//         var myobj = {
-//             userID: userID,
-//             groupID: groupID
-//         };
-//
-//         dbo.collection("groups_members").insertOne(myobj, function (err) {
-//             if(err){
-//
-//             } else{
-//                 db.close();
-//                 res.redirect(backURL);
-//             }
-//         });
-//     });
-// });
+router.post("/add/users", function (req, res, next) {
+    backURL=req.header('Referer') || '/';
+    const userID = req.body.addUserID;
+    const groupID = req.body.addGroupID;
+
+    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+        if(err) throw  err;
+
+        var dbo = db.db("medicore");
+
+        var myobj = {
+            userID: userID,
+            groupID: groupID
+        };
+
+        dbo.collection("groups_members").insertOne(myobj, function (err) {
+            if(err){
+
+            } else{
+                db.close();
+                res.redirect(backURL);
+            }
+        });
+    });
+});
 
 // create group threads
 
-// router.post("create/group_threads", function (req, res, next) {
-//     backURL=req.header('Referer') || '/';
-//     const creater = req.body;
-//     const groupID = req.body;
-//
-//     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
-//         if(err) throw  err;
-//
-//         var dbo = db.db("medicore");
-//
-//         var myobj = {
-//             creater: creater,
-//             groupID: groupID
-//         };
-//
-//         dbo.collection("groups_threads").insertOne(myobj, function (err) {
-//             if(err){
-//
-//             } else{
-//                 db.close();
-//                 res.redirect(backURL);
-//             }
-//         });
-//     });
-// });
+router.post("create/group_threads", function (req, res, next) {
+    backURL=req.header('Referer') || '/';
+    const creator = req.body.threadCreator;
+    const groupID = req.body.threadGroupID;
+    const name = req.body.threadName;
+    const description = req.body.threadDescription;
+
+    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+        if(err) throw  err;
+
+        var dbo = db.db("medicore");
+
+        var myobj = {
+            name: name,
+            description: description,
+            creator: creator,
+            groupID: groupID
+        };
+
+        dbo.collection("groups_threads").insertOne(myobj, function (err) {
+            if(err){
+
+            } else{
+                db.close();
+                res.redirect(backURL);
+            }
+        });
+    });
+});
 
 // add comments to the group threads
 
