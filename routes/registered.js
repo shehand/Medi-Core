@@ -152,6 +152,36 @@ router.get("/viewGroup", function (req, res, next) {
     });
 });
 
+// create a sub group
+
+router.post("/create/subgroup", function (req, res, next) {
+    backURL=req.header('Referer') || '/';
+    const subGroupName = req.body.subGroupName;
+    const creator = req.body.subGroupCreator;
+    const groupName = req.body.groupName;
+
+    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+        if(err) throw  err;
+
+        var dbo = db.db("medicore");
+
+        var myobj = {
+            name: subGroupName,
+            creator: creator,
+            groupName: groupName
+        };
+
+        dbo.collection("sub_groups").insertOne(myobj, function (err) {
+            if(err){
+
+            } else{
+                db.close();
+                res.redirect(backURL);
+            }
+        });
+    });
+});
+
 // add users to the groups
 
 router.post("/add/users", function (req, res, next) {
