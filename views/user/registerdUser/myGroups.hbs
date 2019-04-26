@@ -312,9 +312,9 @@
 
     $(document).on("click", "li", function () {
         var liValue = $(this).data('value');
-        var preValue = document.getElementById("commentArea").value;
+        var preValue = document.getElementById("threadComment").value;
         var newValue = preValue + ", "+liValue;
-        $(".w3-col #commentArea").val( newValue );
+        $(".w3-col #threadComment").val( newValue );
     });
 </script>
 
