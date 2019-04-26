@@ -82,16 +82,11 @@
                     </div>
                 </div>
                 <br>
-
                 <!-- Accordion -->
-
-
                 <!-- End Left Column -->
             </div>
-
             <!-- Middle Column -->
             <div class="w3-col m7" style="padding-left: 10px; padding-right: 10px">
-
                 <div id="accordion">
 
                     {{#if threads}}
@@ -111,10 +106,18 @@
                                             {{this.description}}
                                         </p>
                                         <hr>
-                                        <form action="" method="post">
+                                        <form action="add/group_threads_comments" method="post">
                                             <div class="form-group">
-                                                <label for="userID" class="col-form-label">Comment</label>
-                                                <input type="text" class="form-control" id="userID" name="userID">
+                                                <label for="threadComment" class="col-form-label">Comment : </label>
+                                                <input type="text" class="form-control" id="threadComment" name="threadComment">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="threadCommentCreator" class="col-form-label">Comment Creator : </label>
+                                                <input type="text" class="form-control" id="threadCommentCreator" name="threadCommentCreator">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="threadCommentGroupID" class="col-form-label">Comment Group ID : </label>
+                                                <input type="text" class="form-control" id="threadCommentGroupID" name="threadCommentGroupID">
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-primary">Add Comment</button>
@@ -125,76 +128,74 @@
                             </div>
                         {{/each}}
                     {{else}}
-                            <div class="card">
-                                <div class="card-header" id="headingOne">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Temp Thread
-                                        </button>
-                                    </h5>
-                                </div>
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Temp Thread
+                                    </button>
+                                </h5>
+                            </div>
 
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p>
-                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                        </p>
-                                        <hr>
-                                        <form action="" method="post">
-                                            <div class="form-group">
-                                                <label for="userID" class="col-form-label">Comment</label>
-                                                <input type="text" class="form-control" id="userID" name="userID">
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary">Add Comment</button>
-                                            </div>
-                                        </form>
-                                    </div>
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body">
+                                    <p>
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                    </p>
+                                    <hr>
                                 </div>
                             </div>
+                        </div>
                     {{/if}}
 
                 </div>
-
                 <!-- End Middle Column -->
             </div>
-
             <!-- Right Column -->
             <div class="w3-col m2">
-
-
                 <div class="w3-card w3-round w3-white w3-padding-32 w3-left">
                     <p><i class="w3-xxlarge" style="margin-left: 50px">Labels</i></p>
                     <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="modal" data-target="#createThread" style="margin-left: 30px"><i class="fa fa-comment"></i>Create Thread</button>
                     <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="modal" data-target="#addUser" style="margin-left: 30px"><i class="fa fa-comment"></i>Add User</button>
                     <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="modal" data-target="#createSubGroup" style="margin-left: 30px"><i class="fa fa-comment"></i>Create Sub - Group</button>
+                    <hr>
+                    <p><i class="w3-large" style="margin-left: 50px">Comment Labels</i></p>
+                    <ul>
+                        <li data-value="Don't Eat">Don't Eat</li>
+                        <li data-value="Don't have bath">Don't have bath</li>
+                        <li data-value="Better sleep more">Better sleep more</li>
+                        <li data-value="Time is everything">Time is everything</li>
+                        <li data-value="Make sure you get every prescriptions">Make sure you get every prescriptions</li>
+                        <li data-value="Need more attention">Need more attention</li>
+                    </ul>
                 </div>
-
                 <!-- End Right Column -->
             </div>
-
             <!-- End Grid -->
         </div>
 
         <!--modal to create sub group-->
         <div id="createSubGroup" class="modal fade" role="dialog">
             <div class="modal-dialog">
-
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Create a Group</h4>
+                        <h4 class="modal-title">Create a Sub-Group</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="post">
+                        <form action="create/subgroup" method="post">
                             <div class="form-group">
-                                <label for="userID" class="col-form-label">User ID :</label>
-                                <input type="text" class="form-control" id="userID" name="userID">
+                                <label for="subGroupName" class="col-form-label">Sub Group Name :</label>
+                                <input type="text" class="form-control" id="subGroupName" name="subGroupName">
                             </div>
                             <div class="form-group">
                                 <label for="groupName" class="col-form-label">Group Name :</label>
                                 <input type="text" class="form-control" id="groupName" name="groupName">
+                            </div>
+                            <div class="form-group">
+                                <label for="subGroupCreator" class="col-form-label">Group Creator :</label>
+                                <input type="text" class="form-control" id="subGroupCreator" name="subGroupCreator">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -203,14 +204,12 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
 
         <!--modal to create thread-->
         <div id="createThread" class="modal fade" role="dialog">
             <div class="modal-dialog">
-
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
@@ -242,14 +241,12 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
 
         <!-- modal to add users -->
         <div id="addUser" class="modal fade" role="dialog">
             <div class="modal-dialog">
-
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
@@ -273,10 +270,8 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
-
         <!-- End Page Container -->
     </div>
 </section>
@@ -317,9 +312,9 @@
 
     $(document).on("click", "li", function () {
         var liValue = $(this).data('value');
-        var preValue = document.getElementById("commentArea").value;
+        var preValue = document.getElementById("threadComment").value;
         var newValue = preValue + ", "+liValue;
-        $(".w3-col #commentArea").val( newValue );
+        $(".w3-col #threadComment").val( newValue );
     });
 </script>
 

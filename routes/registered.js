@@ -152,6 +152,36 @@ router.get("/viewGroup", function (req, res, next) {
     });
 });
 
+// create a sub group
+
+router.post("/create/subgroup", function (req, res, next) {
+    backURL=req.header('Referer') || '/';
+    const subGroupName = req.body.subGroupName;
+    const creator = req.body.subGroupCreator;
+    const groupName = req.body.groupName;
+
+    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+        if(err) throw  err;
+
+        var dbo = db.db("medicore");
+
+        var myobj = {
+            name: subGroupName,
+            creator: creator,
+            groupName: groupName
+        };
+
+        dbo.collection("sub_groups").insertOne(myobj, function (err) {
+            if(err){
+
+            } else{
+                db.close();
+                res.redirect(backURL);
+            }
+        });
+    });
+});
+
 // add users to the groups
 
 router.post("/add/users", function (req, res, next) {
@@ -214,32 +244,32 @@ router.post("/create/group_threads", function (req, res, next) {
 
 // add comments to the group threads
 
-// router.post("add/group_threads_comments", function (req, res, next) {
-//     backURL=req.header('Referer') || '/';
-//     const comment = req.body;
-//     const poster: req.body;
-//     const groupID = req.body;
-//
-//     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
-//         if(err) throw  err;
-//
-//         var dbo = db.db("medicore");
-//
-//         var myobj = {
-//             poster: poster,
-//             groupID: groupID,
-//             comment: comment
-//         };
-//
-//         dbo.collection("groups_thread_comments").insertOne(myobj, function (err) {
-//             if(err){
-//
-//             } else{
-//                 db.close();
-//                 res.redirect(backURL);
-//             }
-//         });
-//     });
-// });
+router.post("/add/group_threads_comments", function (req, res, next) {
+    backURL=req.header('Referer') || '/';
+    const comment = req.body.threadComment;
+    const poster= req.body.threadCommentCreator;
+    const groupID = req.body.threadCommentGroupID;
+
+    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+        if(err) throw  err;
+
+        var dbo = db.db("medicore");
+
+        var myobj = {
+            poster: poster,
+            groupID: groupID,
+            comment: comment
+        };
+
+        dbo.collection("groups_thread_comments").insertOne(myobj, function (err) {
+            if(err){
+
+            } else{
+                db.close();
+                res.redirect(backURL);
+            }
+        });
+    });
+});
 
 module.exports = router;
