@@ -111,17 +111,17 @@
                                             {{this.description}}
                                         </p>
                                         <hr>
-                                        <form action="" method="post">
+                                        <form action="add/group_threads_comments" method="post">
                                             <div class="form-group">
-                                                <label for="threadComment" class="col-form-label">Comment</label>
+                                                <label for="threadComment" class="col-form-label">Comment : </label>
                                                 <input type="text" class="form-control" id="threadComment" name="threadComment">
                                             </div>
                                             <div class="form-group">
-                                                <label for="threadCommentCreator" class="col-form-label">Comment</label>
+                                                <label for="threadCommentCreator" class="col-form-label">Comment Creator : </label>
                                                 <input type="text" class="form-control" id="threadCommentCreator" name="threadCommentCreator">
                                             </div>
                                             <div class="form-group">
-                                                <label for="threadCommentGroupID" class="col-form-label">Comment</label>
+                                                <label for="threadCommentGroupID" class="col-form-label">Comment Group ID : </label>
                                                 <input type="text" class="form-control" id="threadCommentGroupID" name="threadCommentGroupID">
                                             </div>
                                             <div class="modal-footer">
@@ -148,15 +148,6 @@
                                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                                         </p>
                                         <hr>
-                                        <form action="" method="post">
-                                            <div class="form-group">
-                                                <label for="userID" class="col-form-label">Comment</label>
-                                                <input type="text" class="form-control" id="userID" name="userID">
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary">Add Comment</button>
-                                            </div>
-                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -191,18 +182,22 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Create a Group</h4>
+                        <h4 class="modal-title">Create a Sub-Group</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
                         <form action="" method="post">
                             <div class="form-group">
-                                <label for="userID" class="col-form-label">User ID :</label>
-                                <input type="text" class="form-control" id="userID" name="userID">
+                                <label for="subGroupName" class="col-form-label">Sub Group Name :</label>
+                                <input type="text" class="form-control" id="subGroupName" name="subGroupName">
                             </div>
                             <div class="form-group">
                                 <label for="groupName" class="col-form-label">Group Name :</label>
                                 <input type="text" class="form-control" id="groupName" name="groupName">
+                            </div>
+                            <div class="form-group">
+                                <label for="subGroupCreator" class="col-form-label">Group Creator :</label>
+                                <input type="text" class="form-control" id="subGroupCreator" name="subGroupCreator">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
