@@ -94,19 +94,19 @@
                             <div class="card">
                                 <div class="card-header" id="headingOne">
                                     <h5 class="mb-0">
-                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#{{this.name}}" aria-expanded="true" aria-controls="{{this.name}}">
                                             {{this.name}}
                                         </button>
                                     </h5>
                                 </div>
 
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div id="{{this.name}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                     <div class="card-body">
                                         <p>
                                             {{this.description}}
                                         </p>
                                         <hr>
-                                        <form action="add/group_threads_comments" method="post">
+                                        <form action="/users/add/group_threads_comments" method="post">
                                             <div class="form-group">
                                                 <label for="threadComment" class="col-form-label">Comment : </label>
                                                 <input type="text" class="form-control" id="threadComment" name="threadComment">
@@ -115,10 +115,8 @@
                                                 <label for="threadCommentCreator" class="col-form-label">Comment Creator : </label>
                                                 <input type="text" class="form-control" id="threadCommentCreator" name="threadCommentCreator">
                                             </div>
-                                            <div class="form-group">
-                                                <label for="threadCommentGroupID" class="col-form-label">Comment Group ID : </label>
-                                                <input type="text" class="form-control" id="threadCommentGroupID" name="threadCommentGroupID">
-                                            </div>
+                                                <input type="hidden" class="form-control" id="threadCommentGroupName" name="threadCommentGroupName" value="{{this.groupName}}">
+                                                <input type="hidden" class="form-control" id="threadCommentThreadName" name="threadCommentThreadName" value="{{this.name}}">
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-primary">Add Comment</button>
                                             </div>
@@ -184,14 +182,14 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form action="create/subgroup" method="post">
+                        <form action="/users/create/subgroup" method="post">
                             <div class="form-group">
                                 <label for="subGroupName" class="col-form-label">Sub Group Name :</label>
                                 <input type="text" class="form-control" id="subGroupName" name="subGroupName">
                             </div>
                             <div class="form-group">
-                                <label for="groupName" class="col-form-label">Group Name :</label>
-                                <input type="text" class="form-control" id="groupName" name="groupName">
+                                <label for="groupNameForSub" class="col-form-label">Group Name :</label>
+                                <input type="text" class="form-control" id="groupNameForSub" name="groupNameForSub">
                             </div>
                             <div class="form-group">
                                 <label for="subGroupCreator" class="col-form-label">Group Creator :</label>
@@ -217,7 +215,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form action="create/group_threads" method="post">
+                        <form action="/users/create/group_threads" method="post">
                             <div class="form-group">
                                 <label for="threadName" class="col-form-label">Thread Name :</label>
                                 <input type="text" class="form-control" id="threadName" name="threadName">
@@ -230,10 +228,7 @@
                                 <label for="threadCreator" class="col-form-label">Creator :</label>
                                 <input type="text" class="form-control" id="threadCreator" name="threadCreator">
                             </div>
-                            <div class="form-group">
-                                <label for="threadGroupID" class="col-form-label">Group ID :</label>
-                                <input type="text" class="form-control" id="threadGroupID" name="threadGroupID">
-                            </div>
+                            <input type="hidden" class="form-control" id="groupName" name="groupName" value="{{this.groupName}}">
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Create Thread</button>
@@ -254,7 +249,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form action="add/users" method="post">
+                        <form action="/users/add/users" method="post">
                             <div class="form-group">
                                 <label for="addUserID" class="col-form-label">User ID :</label>
                                 <input type="text" class="form-control" id="addUserID" name="addUserID">
