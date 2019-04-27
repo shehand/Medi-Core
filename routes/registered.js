@@ -140,7 +140,7 @@ router.get("/viewGroup/:groupName", function (req, res, next) {
     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
 
         var dbo = db.db("medicore");
-        const thread =  dbo.collection("groups_threads").find({name: groupName}); // group id or name should be passed to the find method.
+        const thread =  dbo.collection("groups_threads").find({groupName: groupName}); // group id or name should be passed to the find method.
 
         thread.forEach(function (doc, err) {
             if (err) throw err;
@@ -159,7 +159,7 @@ router.post("/create/subgroup", function (req, res, next) {
     backURL=req.header('Referer') || '/';
     const subGroupName = req.body.subGroupName;
     const creator = req.body.subGroupCreator;
-    const groupName = req.body.groupName;
+    const groupName = req.body.groupNameForSub;
 
     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
         if(err) throw  err;
@@ -216,7 +216,6 @@ router.post("/add/users", function (req, res, next) {
 router.post("/create/group_threads", function (req, res, next) {
     backURL=req.header('Referer') || '/';
     const creator = req.body.threadCreator;
-    const groupID = req.body.threadGroupID;
     const name = req.body.threadName;
     const description = req.body.threadDescription;
     const groupName = req.body.groupName;
@@ -230,7 +229,7 @@ router.post("/create/group_threads", function (req, res, next) {
             name: name,
             description: description,
             creator: creator,
-            groupID: groupID
+            groupName: groupName
         };
 
         dbo.collection("groups_threads").insertOne(myobj, function (err) {

@@ -190,8 +190,8 @@
                                 <input type="text" class="form-control" id="subGroupName" name="subGroupName">
                             </div>
                             <div class="form-group">
-                                <label for="groupName" class="col-form-label">Group Name :</label>
-                                <input type="text" class="form-control" id="groupName" name="groupName">
+                                <label for="groupNameForSub" class="col-form-label">Group Name :</label>
+                                <input type="text" class="form-control" id="groupNameForSub" name="groupNameForSub">
                             </div>
                             <div class="form-group">
                                 <label for="subGroupCreator" class="col-form-label">Group Creator :</label>
@@ -206,7 +206,7 @@
                 </div>
             </div>
         </div>
-        <input type="text" name="groupName" value="{{this.groupName}}">
+
         <!--modal to create thread-->
         <div id="createThread" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -230,10 +230,7 @@
                                 <label for="threadCreator" class="col-form-label">Creator :</label>
                                 <input type="text" class="form-control" id="threadCreator" name="threadCreator">
                             </div>
-                            <div class="form-group">
-                                <label for="threadGroupID" class="col-form-label">Group ID :</label>
-                                <input type="text" class="form-control" id="threadGroupID" name="threadGroupID">
-                            </div>
+                            <input type="hidden" class="form-control" id="groupName" name="groupName" value="{{this.groupName}}">
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Create Thread</button>
