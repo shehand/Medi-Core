@@ -229,7 +229,8 @@ router.post("/create/group_threads", function (req, res, next) {
             name: name,
             description: description,
             creator: creator,
-            groupName: groupName
+            groupName: groupName,
+            comments : []
         };
 
         dbo.collection("groups_threads").insertOne(myobj, function (err) {
@@ -249,27 +250,25 @@ router.post("/add/group_threads_comments", function (req, res, next) {
     backURL=req.header('Referer') || '/';
     const comment = req.body.threadComment;
     const poster= req.body.threadCommentCreator;
-    const groupID = req.body.threadCommentGroupID;
+    const groupID = req.body.threadCommentGroupName;
+    const threadName = req.body.threadCommentThreadName;
 
     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
         if(err) throw  err;
 
         var dbo = db.db("medicore");
 
-        var myobj = {
-            poster: poster,
-            groupID: groupID,
-            comment: comment
+        const commentObj = {
+            text : "asdfsafsd",
+            poster: "asfasfsd"
         };
 
-        dbo.collection("groups_thread_comments").insertOne(myobj, function (err) {
-            if(err){
-
-            } else{
-                db.close();
-                res.redirect(backURL);
-            }
+        dbo.collection("groups_threads").findAndModify({
+            query: { name: threadName, groupName: groupID },
+            update: { comments : commentObj },
+            upsert: true,
         });
+        res.redirect(backURL);
     });
 });
 
