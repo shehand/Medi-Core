@@ -133,7 +133,8 @@ router.post("/create/group", function (req, res, next) {
 
 // view group
 
-router.get("/viewGroup", function (req, res, next) {
+router.get("/viewGroup/:groupName", function (req, res, next) {
+    var groupName = req.params.groupName;
     var threadArray = [];
 
     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
