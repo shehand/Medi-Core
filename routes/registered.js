@@ -253,22 +253,36 @@ router.post("/add/group_threads_comments", function (req, res, next) {
     const groupID = req.body.threadCommentGroupName;
     const threadName = req.body.threadCommentThreadName;
 
+    var commentsArray = [];
+
     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
         if(err) throw  err;
 
         var dbo = db.db("medicore");
 
         const commentObj = {
-            text : "asdfsafsd",
-            poster: "asfasfsd"
+            text : comment,
+            poster: poster
         };
 
-        dbo.collection("groups_threads").findAndModify({
-            query: { name: threadName, groupName: groupID },
-            update: { comments : commentObj },
-            upsert: true,
+        const preComments = dbo.collection("groups_threads").find({ name: threadName, groupName: groupID },{ comments:1 });
+
+        preComments.forEach(function (doc, err) {
+            if (err) throw err;
+            commentsArray.push(doc);
+        }, function () {
+            commentsArray.push(commentObj);
+            console.log(commentsArray);
         });
-        res.redirect(backURL);
+
+        dbo.collection("groups_threads").findOneAndUpdate({ name: threadName, groupName: groupID },{ $set: {comments: commentObj}}, function (err, doc) {
+            if(err){
+
+            }else{
+                db.close();
+                res.redirect(backURL);
+            }
+        });
     });
 });
 
