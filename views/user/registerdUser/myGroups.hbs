@@ -94,13 +94,13 @@
                             <div class="card">
                                 <div class="card-header" id="headingOne">
                                     <h5 class="mb-0">
-                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#{{this.name}}" aria-expanded="true" aria-controls="{{this.name}}">
                                             {{this.name}}
                                         </button>
                                     </h5>
                                 </div>
 
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div id="{{this.name}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                     <div class="card-body">
                                         <p>
                                             {{this.description}}
@@ -206,7 +206,7 @@
                 </div>
             </div>
         </div>
-
+        <input type="text" name="groupName" value="{{this.groupName}}">
         <!--modal to create thread-->
         <div id="createThread" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -217,7 +217,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form action="create/group_threads" method="post">
+                        <form action="/users/create/group_threads" method="post">
                             <div class="form-group">
                                 <label for="threadName" class="col-form-label">Thread Name :</label>
                                 <input type="text" class="form-control" id="threadName" name="threadName">

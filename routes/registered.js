@@ -140,7 +140,7 @@ router.get("/viewGroup/:groupName", function (req, res, next) {
     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
 
         var dbo = db.db("medicore");
-        const thread =  dbo.collection("groups_threads").find(); // group id or name should be passed to the find method.
+        const thread =  dbo.collection("groups_threads").find({name: groupName}); // group id or name should be passed to the find method.
 
         thread.forEach(function (doc, err) {
             if (err) throw err;
@@ -148,7 +148,7 @@ router.get("/viewGroup/:groupName", function (req, res, next) {
             threadArray.push(doc);
         }, function () {
             db.close();
-            res.render("user/registerdUser/myGroups", { threads: threadArray });
+            res.render("user/registerdUser/myGroups", { threads: threadArray, groupName: groupName });
         });
     });
 });
@@ -219,6 +219,7 @@ router.post("/create/group_threads", function (req, res, next) {
     const groupID = req.body.threadGroupID;
     const name = req.body.threadName;
     const description = req.body.threadDescription;
+    const groupName = req.body.groupName;
 
     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
         if(err) throw  err;

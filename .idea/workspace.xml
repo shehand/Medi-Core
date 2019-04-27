@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0f2281cc-9d3c-4dbd-b1d4-fbb6b879ebbe" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/registered.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/registered.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/user/registerdUser/dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/registerdUser/dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user/registerdUser/myGroups.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/registerdUser/myGroups.hbs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,19 +19,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/user/registerdUser/dashboard.hbs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="93" column="82" lean-forward="true" selection-start-line="93" selection-start-column="82" selection-end-line="93" selection-end-column="82" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/registered.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="148" column="24" lean-forward="true" selection-start-line="148" selection-start-column="24" selection-end-line="148" selection-end-column="24" />
+            <state relative-caret-position="246">
+              <caret line="240" column="38" lean-forward="true" selection-start-line="240" selection-start-column="38" selection-end-line="240" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -39,8 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/user/registerdUser/myGroups.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="210" column="64" selection-start-line="210" selection-start-column="64" selection-end-line="210" selection-end-column="64" />
+            <state relative-caret-position="214">
+              <caret line="215" column="68" lean-forward="true" selection-start-line="215" selection-start-column="68" selection-end-line="215" selection-end-column="68" />
             </state>
           </provider>
         </entry>
@@ -48,7 +39,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/user/publicPost.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4945">
+            <state relative-caret-position="343">
               <caret line="215" column="4" selection-start-line="215" selection-start-column="4" selection-end-line="220" selection-end-column="7" />
             </state>
           </provider>
@@ -84,10 +75,10 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/views/layout.hbs" />
         <option value="$PROJECT_DIR$/views/user/dashboard.hbs" />
-        <option value="$PROJECT_DIR$/views/user/registerdUser/myGroups.hbs" />
         <option value="$PROJECT_DIR$/routes/index.js" />
-        <option value="$PROJECT_DIR$/routes/registered.js" />
         <option value="$PROJECT_DIR$/views/user/registerdUser/dashboard.hbs" />
+        <option value="$PROJECT_DIR$/views/user/registerdUser/myGroups.hbs" />
+        <option value="$PROJECT_DIR$/routes/registered.js" />
       </list>
     </option>
   </component>
@@ -176,12 +167,12 @@
       <workItem from="1556167444386" duration="3688000" />
       <workItem from="1556257261948" duration="3601000" />
       <workItem from="1556278191690" duration="127000" />
-      <workItem from="1556338769638" duration="786000" />
+      <workItem from="1556338769638" duration="3488000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60409000" />
+    <option name="totallyTimeSpent" value="63111000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="840" extended-state="6" />
@@ -201,7 +192,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.19152047" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.34356725" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -349,13 +340,6 @@
         <state relative-caret-position="-1070" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/user/publicPost.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4945">
-          <caret line="215" column="4" selection-start-line="215" selection-start-column="4" selection-end-line="220" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -363,24 +347,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/registered.js">
+    <entry file="file://$PROJECT_DIR$/views/user/registerdUser/dashboard.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="148" column="24" lean-forward="true" selection-start-line="148" selection-start-column="24" selection-end-line="148" selection-end-column="24" />
+        <state relative-caret-position="77">
+          <caret line="140" column="71" lean-forward="true" selection-start-line="140" selection-start-column="71" selection-end-line="140" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/user/publicPost.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="215" column="4" selection-start-line="215" selection-start-column="4" selection-end-line="220" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/user/registerdUser/myGroups.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="210" column="64" selection-start-line="210" selection-start-column="64" selection-end-line="210" selection-end-column="64" />
+        <state relative-caret-position="214">
+          <caret line="215" column="68" lean-forward="true" selection-start-line="215" selection-start-column="68" selection-end-line="215" selection-end-column="68" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/user/registerdUser/dashboard.hbs">
+    <entry file="file://$PROJECT_DIR$/routes/registered.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="93" column="82" lean-forward="true" selection-start-line="93" selection-start-column="82" selection-end-line="93" selection-end-column="82" />
+        <state relative-caret-position="246">
+          <caret line="240" column="38" lean-forward="true" selection-start-line="240" selection-start-column="38" selection-end-line="240" selection-end-column="38" />
         </state>
       </provider>
     </entry>
