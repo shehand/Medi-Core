@@ -45,7 +45,7 @@ router.post("/comments", function (req, res, next) {
             commentArray.push(doc);
         }, function () {
             db.close();
-            res.render("user/registeredUser/privatePosts", {postID: postID, comments: commentArray});
+            res.render("user/registerdUser/privatePosts", {postID: postID, comments: commentArray});
         });
     });
 });
@@ -284,6 +284,10 @@ router.post("/add/group_threads_comments", function (req, res, next) {
             }
         });
     });
+});
+
+router.get("/profile", function (req, res, next) {
+   res.render("user/registerdUser/profile");
 });
 
 module.exports = router;

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0f2281cc-9d3c-4dbd-b1d4-fbb6b879ebbe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/views/user/registerdUser/myGroups.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/registerdUser/myGroups.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user/registerdUser/dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/registerdUser/dashboard.hbs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,11 +24,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/user/registerdUser/myGroups.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="110" column="69" selection-start-line="110" selection-start-column="69" selection-end-line="110" selection-end-column="69" />
+            <state relative-caret-position="1485">
+              <caret line="105" column="64" lean-forward="true" selection-start-line="105" selection-start-column="64" selection-end-line="105" selection-end-column="64" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/user/registerdUser/profile.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" column="59" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/user/registerdUser/dashboard.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="248">
+              <caret line="46" column="82" lean-forward="true" selection-start-line="46" selection-start-column="82" selection-end-line="46" selection-end-column="82" />
             </state>
           </provider>
         </entry>
@@ -65,9 +83,9 @@
         <option value="$PROJECT_DIR$/views/layout.hbs" />
         <option value="$PROJECT_DIR$/views/user/dashboard.hbs" />
         <option value="$PROJECT_DIR$/routes/index.js" />
-        <option value="$PROJECT_DIR$/views/user/registerdUser/dashboard.hbs" />
         <option value="$PROJECT_DIR$/routes/registered.js" />
         <option value="$PROJECT_DIR$/views/user/registerdUser/myGroups.hbs" />
+        <option value="$PROJECT_DIR$/views/user/registerdUser/dashboard.hbs" />
       </list>
     </option>
   </component>
@@ -94,6 +112,24 @@
               <item name="Medi-Core" type="b2602c69:ProjectViewProjectNode" />
               <item name="Medi-Core" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Medi-Core" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Medi-Core" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Medi-Core" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Medi-Core" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Medi-Core" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Medi-Core" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="registerdUser" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -157,18 +193,18 @@
       <workItem from="1556257261948" duration="3601000" />
       <workItem from="1556278191690" duration="127000" />
       <workItem from="1556338769638" duration="10472000" />
-      <workItem from="1556454560977" duration="473000" />
+      <workItem from="1556454560977" duration="564000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70568000" />
+    <option name="totallyTimeSpent" value="70659000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="840" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13879709" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13879709" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -273,13 +309,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/user/registerdUser/profile.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="59" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/user/registerdUser/privatePosts.hbs">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -337,13 +366,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/user/registerdUser/dashboard.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="140" column="71" lean-forward="true" selection-start-line="140" selection-start-column="71" selection-end-line="140" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/user/publicPost.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="343">
@@ -360,8 +382,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/user/registerdUser/myGroups.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="110" column="69" selection-start-line="110" selection-start-column="69" selection-end-line="110" selection-end-column="69" />
+        <state relative-caret-position="1485">
+          <caret line="105" column="64" lean-forward="true" selection-start-line="105" selection-start-column="64" selection-end-line="105" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/user/registerdUser/profile.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="59" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/user/registerdUser/dashboard.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="46" column="82" lean-forward="true" selection-start-line="46" selection-start-column="82" selection-end-line="46" selection-end-column="82" />
         </state>
       </provider>
     </entry>
