@@ -107,7 +107,10 @@
                                         </p>
                                         <hr>
                                         <p><b>Comments</b></p>
-                                        <p><span>sample</span></p>
+                                        {{#each comments}}
+                                            <p><span>{{this.text}}</span></p>
+                                            <p><span>{{this.poster}}</span></p>
+                                        {{/each}}
                                         <form action="/users/add/group_threads_comments" method="post">
                                             <div class="form-group">
                                                 <label for="threadComment" class="col-form-label">Comment : </label>
