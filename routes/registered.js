@@ -202,7 +202,7 @@ router.post("/add/users", function (req, res, next) {
         var dbo = db.db("medicore");
 
         var myobj = {
-            userID: userID,
+            userName: userID,
             groupName: groupID
         };
 

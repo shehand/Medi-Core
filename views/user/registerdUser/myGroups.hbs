@@ -84,7 +84,9 @@
                     <hr>
                     <p><i class="w3-large" style="margin-left: 50px">Group Members</i></p>
                     <ul>
-
+                        {{#each groupMembers}}
+                            <li> {{this.userName}} </li>
+                        {{/each}}
                     </ul>
                 </div>
                 <br>
