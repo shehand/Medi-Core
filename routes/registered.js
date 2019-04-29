@@ -136,19 +136,25 @@ router.post("/create/group", function (req, res, next) {
 router.get("/viewGroup/:groupName", function (req, res, next) {
     var groupName = req.params.groupName;
     var threadArray = [];
+    var memberArray = [];
 
     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
 
         var dbo = db.db("medicore");
         const thread =  dbo.collection("groups_threads").find({groupName: groupName}); // group id or name should be passed to the find method.
+        const member =  dbo.collection("groups_members").find({groupName: groupName}); // group id or name should be passed to the find method.
 
         thread.forEach(function (doc, err) {
             if (err) throw err;
-
             threadArray.push(doc);
         }, function () {
-            db.close();
-            res.render("user/registerdUser/myGroups", { threads: threadArray, groupName: groupName });
+            member.forEach(function (doc, err) {
+                if (err) throw err;
+                memberArray.push(doc);
+            }, function () {
+                db.close();
+                res.render("user/registerdUser/myGroups", { threads: threadArray, groupName: groupName, groupMembers: memberArray});
+            });
         });
     });
 });
@@ -197,7 +203,7 @@ router.post("/add/users", function (req, res, next) {
 
         var myobj = {
             userID: userID,
-            groupID: groupID
+            groupName: groupID
         };
 
         dbo.collection("groups_members").insertOne(myobj, function (err) {
