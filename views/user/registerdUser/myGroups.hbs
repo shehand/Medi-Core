@@ -80,6 +80,14 @@
                         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> No 23, Kirulapone</p>
                         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
                     </div>
+                    <br>
+                    <hr>
+                    <p><i class="w3-large" style="margin-left: 50px">Group Members</i></p>
+                    <ul>
+                        {{#each groupMembers}}
+                            <li> {{this.userName}} </li>
+                        {{/each}}
+                    </ul>
                 </div>
                 <br>
                 <!-- Accordion -->
@@ -256,13 +264,10 @@
                     <div class="modal-body">
                         <form action="/users/add/users" method="post">
                             <div class="form-group">
-                                <label for="addUserID" class="col-form-label">User ID :</label>
+                                <label for="addUserID" class="col-form-label">User's Name :</label>
                                 <input type="text" class="form-control" id="addUserID" name="addUserID">
                             </div>
-                            <div class="form-group">
-                                <label for="addGroupID" class="col-form-label">Group ID :</label>
-                                <input type="text" class="form-control" id="addGroupID" name="addGroupID">
-                            </div>
+                            <input type="hidden" class="form-control" id="groupName" name="groupName" value="{{this.groupName}}">
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Add User</button>
