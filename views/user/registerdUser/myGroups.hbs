@@ -265,10 +265,7 @@
                                 <label for="addUserID" class="col-form-label">User ID :</label>
                                 <input type="text" class="form-control" id="addUserID" name="addUserID">
                             </div>
-                            <div class="form-group">
-                                <label for="addGroupID" class="col-form-label">Group ID :</label>
-                                <input type="text" class="form-control" id="addGroupID" name="addGroupID">
-                            </div>
+                            <input type="hidden" class="form-control" id="groupName" name="groupName" value="{{this.groupName}}">
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Add User</button>

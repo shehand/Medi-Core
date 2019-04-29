@@ -194,7 +194,7 @@ router.post("/create/subgroup", function (req, res, next) {
 router.post("/add/users", function (req, res, next) {
     backURL=req.header('Referer') || '/';
     const userID = req.body.addUserID;
-    const groupID = req.body.addGroupID;
+    const groupID = req.body.groupName;
 
     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
         if(err) throw  err;
